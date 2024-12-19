@@ -30,6 +30,8 @@ RUN yarn install --frozen-lockfile
 # Copy application source code
 COPY . .
 
+RUN SECRET_KEY_BASE_DUMMY=1 ./bin/rails assets:precompile
+
 # Set permissions for the entrypoint script
 RUN chmod +x ./entrypoint.sh
 
