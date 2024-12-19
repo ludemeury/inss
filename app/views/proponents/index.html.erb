@@ -1,0 +1,16 @@
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Proponents" %>
+
+<h1>Proponents</h1>
+
+<div id="proponents">
+  <% @proponents.each do |proponent| %>
+    <%= render proponent %>
+    <p>
+      <%= link_to "Show this proponent", proponent %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New proponent", new_proponent_path %>
