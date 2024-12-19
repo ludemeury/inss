@@ -8,6 +8,7 @@ services:
     container_name: rails_app
     volumes:
       - .:/usr/src/app
+      - bundle_cache:/usr/local/bundle
     ports:
       - "3000:3000"
     environment:
@@ -40,3 +41,4 @@ services:
 
 volumes:
   postgres_data:
+  bundle_cache:
