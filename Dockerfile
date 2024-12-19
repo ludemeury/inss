@@ -24,6 +24,9 @@ COPY Gemfile Gemfile.lock ./
 # Install gems
 RUN bundle install
 
+COPY package.json yarn.lock ./
+RUN yarn install --frozen-lockfile
+
 # Copy application source code
 COPY . .
 
