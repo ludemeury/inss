@@ -30,6 +30,8 @@ RUN yarn install --frozen-lockfile
 # Copy application source code
 COPY . .
 
+RUN bundle exec bootsnap precompile app/ lib/
+
 RUN bundle exec rake assets:precompile 
 
 # Set permissions for the entrypoint script
