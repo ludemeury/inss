@@ -1,17 +1,8 @@
-<div id="<%= dom_id proponent %>">
-  <p>
-    <strong>Name:</strong>
-    <%= proponent.name %>
-  </p>
-
-  <p>
-    <strong>Birthdate:</strong>
-    <%= proponent.birthdate %>
-  </p>
-
-  <p>
-    <strong>Income:</strong>
-    <%= proponent.income %>
-  </p>
-
-</div>
+<tr id="<%= dom_id proponent %>">
+  <td><%= proponent.name %></td>
+  <td><%= proponent.birthdate %></td>
+  <td><%= proponent.income %></td>
+  <td>
+    <%= link_to '', proponent, class: "bi bi-eye" %>
+  </td>
+</tr>

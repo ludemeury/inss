@@ -1,16 +1,25 @@
 <p style="color: green"><%= notice %></p>
 
-<% content_for :title, "Proponents" %>
+<% content_for :title, "Proponentes" %>
 
-<h1>Proponents</h1>
+<h1>Proponentes</h1>
 
 <div id="proponents">
-  <% @proponents.each do |proponent| %>
-    <%= render proponent %>
-    <p>
-      <%= link_to "Show this proponent", proponent %>
-    </p>
-  <% end %>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Nome</th>
+        <th scope="col">Data de nascimento</th>
+        <th scope="col">Salário</th>
+        <th scope="col">#</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @proponents.each do |proponent| %>
+        <%= render proponent %>
+      <% end %>
+    </tbody>
+  </table>
 </div>
 
-<%= link_to "New proponent", new_proponent_path %>
+<%= link_to "Novo", new_proponent_path %>
