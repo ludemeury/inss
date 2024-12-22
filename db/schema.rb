@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_12_22_161024) do
+ActiveRecord::Schema[8.0].define(version: 2024_12_22_161554) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -30,6 +30,15 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_22_161024) do
     t.index ["addressable_type", "addressable_id"], name: "index_addresses_on_addressable"
   end
 
+  create_table "proponent_contacts", force: :cascade do |t|
+    t.string "value"
+    t.string "kind"
+    t.bigint "proponent_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["proponent_id"], name: "index_proponent_contacts_on_proponent_id"
+  end
+
   create_table "proponent_documents", force: :cascade do |t|
     t.string "document"
     t.string "kind"
@@ -47,5 +56,6 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_22_161024) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "proponent_contacts", "proponents"
   add_foreign_key "proponent_documents", "proponents"
 end
