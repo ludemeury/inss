@@ -10,9 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_12_19_134354) do
+ActiveRecord::Schema[8.0].define(version: 2024_12_22_142456) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
+
+  create_table "proponent_documents", force: :cascade do |t|
+    t.string "document"
+    t.string "kind"
+    t.bigint "proponent_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["proponent_id"], name: "index_proponent_documents_on_proponent_id"
+  end
 
   create_table "proponents", force: :cascade do |t|
     t.string "name"
@@ -21,4 +30,6 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_19_134354) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  add_foreign_key "proponent_documents", "proponents"
 end
