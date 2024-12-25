@@ -17,7 +17,10 @@
     </div>
 
     <div class="col-3">
-      <%= form.text_field :birthdate, class: "form-control", placeholder: "Data de nascimento" %>
+      <%= form.text_field :birthdate, class: "form-control", data: {
+    controller: "flatpickr",
+    flatpickr_enable_time: true
+  }, placeholder: "Data de nascimento" %>
     </div>
 
     <div class="col-3">

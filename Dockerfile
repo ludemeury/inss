@@ -23,10 +23,6 @@ RUN yarn install --frozen-lockfile
 
 COPY . .
 
-# RUN bundle exec bootsnap precompile app/ lib/
-
-# RUN bundle exec rake assets:precompile 
-
 RUN chmod +x ./entrypoint.sh
 
 EXPOSE 3000
