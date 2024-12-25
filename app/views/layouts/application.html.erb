@@ -24,6 +24,37 @@
   </head>
 
   <body>
-    <%= yield %>
+    <header class="bg-primary text-white text-center py-3">
+      <h1>Desconto INSS</h1>
+    </header>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Menu</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <%= link_to "Proponentes", proponents_path, class: "nav-link menu-item active" %>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link menu-item" href="#" data-target="reports">Dashboards</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container my-4">
+      <div id="content">
+        <%= yield %>
+      </div>
+    </div>
+
+    <footer class="bg-dark text-white text-center py-3 position-fixed bottom-0 w-100">
+      <p>&copy; 2024 Desconto INSS.</p>
+    </footer>
   </body>
 </html>
