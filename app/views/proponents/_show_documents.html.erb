@@ -3,7 +3,24 @@
     Documentos de <%= @proponent.name %>
   </div>
   <div class="card-body">
-    <h5 class="card-title">Email: john.doe@example.com</h5>
-    <p class="card-text">Phone: (123) 456-7890</p>
+    <div id="documents">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Tipo</th>
+            <th scope="col">Número</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% proponent.documents.each do |document| %>
+            <td><%= document.kind %></td>
+            <td><%= document.document %></td>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+    <%= link_to "Novo documento", new_proponent_document_path(proponent), class: "btn btn-primary float-end text-uppercase btn-sm" %>
   </div>
 </div>

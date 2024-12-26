@@ -1,0 +1,19 @@
+<div id="proponents">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Nome</th>
+        <th scope="col">Data de nascimento</th>
+        <th scope="col">Salário</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @proponents.each do |proponent| %>
+        <%= render proponent %>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<%= link_to "Novo", new_proponent_path, class: "btn btn-primary float-end text-uppercase" %>
