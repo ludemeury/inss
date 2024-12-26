@@ -23,7 +23,7 @@ class DocumentsController < ApplicationController
     @document = @proponent.documents.new(document_params)
 
     if @document.save
-      redirect_to proponent_documents_path(@proponent), notice: 'Documento foi criado com sucesso.'
+      redirect_to proponent_path(@proponent, tab: "document"), notice: 'Documento foi criado com sucesso.'
     else
       render :new, status: :unprocessable_entity
     end
@@ -35,7 +35,7 @@ class DocumentsController < ApplicationController
   # PATCH/PUT /proponents/:proponent_id/documents/:id
   def update
     if @document.update(document_params)
-      redirect_to proponent_documents_path(@proponent), notice: 'Documento foi atualizado com sucesso.'
+      redirect_to  proponent_path(@proponent, tab: "document"), notice: 'Documento foi atualizado com sucesso.'
     else
       render :edit, status: :unprocessable_entity
     end
@@ -44,7 +44,7 @@ class DocumentsController < ApplicationController
   # DELETE /proponents/:proponent_id/documents/:id
   def destroy
     @document.destroy
-    redirect_to proponent_documents_path(@proponent), notice: 'Documento foi excluído com sucesso.'
+    redirect_to  proponent_path(@proponent, tab: "document"), notice: 'Documento foi excluído com sucesso.'
   end
 
   private

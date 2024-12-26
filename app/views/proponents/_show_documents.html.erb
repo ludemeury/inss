@@ -14,8 +14,10 @@
         </thead>
         <tbody>
           <% proponent.documents.each do |document| %>
-            <td><%= document.kind %></td>
-            <td><%= document.document %></td>
+            <tr>
+              <td><%= document.kind %></td>
+              <td><%= document.document %></td>
+            </tr>
           <% end %>
         </tbody>
       </table>

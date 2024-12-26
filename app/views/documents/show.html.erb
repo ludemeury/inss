@@ -1,17 +1,3 @@
-<script>
-  document.addEventListener("DOMContentLoaded", function() {
-    var hash = window.location.hash;
-    if (hash) {
-      var targetTab = document.querySelector('button[data-bs-target="' + hash + '"]');
-      if (targetTab) {
-        var tab = new bootstrap.Tab(targetTab);
-        tab.show();
-      }
-    }
-  });
-</script>
-
-
 <% content_for :title, "Detalhes do proponente" %>
 
 <p style="color: green"><%= notice %></p>
