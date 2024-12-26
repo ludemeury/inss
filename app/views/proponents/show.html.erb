@@ -1,28 +1,52 @@
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    var hash = window.location.hash;
+    if (hash) {
+      var targetTab = document.querySelector('button[data-bs-target="' + hash + '"]');
+      if (targetTab) {
+        var tab = new bootstrap.Tab(targetTab);
+        tab.show();
+      }
+    }
+  });
+</script>
+
+
 <% content_for :title, "Detalhes do proponente" %>
 
 <p style="color: green"><%= notice %></p>
 
-<div class="card">
-  <div class="card-header bg-primary text-white">
-    Dados do proponente
-  </div>
-  <div class="card-body">
-    <div class="row mb-3">
-        <div class="col-md-8">
-          <label class="form-label fw-bold">Nome:</label>
-          <p class="form-control-plaintext"><%= @proponent.name %></p>
-        </div>
+<div class="container my-5">
+  <ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item" role="presentation">
+      <button class="nav-link active" id="personal-tab" data-bs-toggle="tab" data-bs-target="#personal" type="button" role="tab" aria-controls="personal" aria-selected="true">Dados pessoais</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="document-tab" data-bs-toggle="tab" data-bs-target="#document" type="button" role="tab" aria-controls="document" aria-selected="false">Documentos</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="address-tab" data-bs-toggle="tab" data-bs-target="#address" type="button" role="tab" aria-controls="address" aria-selected="false">Endereços</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Contatos</button>
+    </li>
+  </ul>
 
-        <div class="col-md-4">
-        <label class="form-label fw-bold">Data de nascimento:</label>
-        <p class="form-control-plaintext"><%= @proponent.birthdate %></p>
-      </div>
+  <div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="personal" role="tabpanel" aria-labelledby="personal-tab">
+      <%= render "show_personal_info", proponent: @proponent %>
     </div>
-    <div class="row">
-      <div class="col-md-6 mb-3">
-        <label class="form-label fw-bold">Salário:</label>
-        <p class="form-control-plaintext"><%= @proponent.income %></p>
-      </div>
+
+    <div class="tab-pane fade" id="document" role="tabpanel" aria-labelledby="document-tab">
+      <%= render "show_documents", proponent: @proponent %>
+    </div>
+
+    <div class="tab-pane fade" id="address" role="tabpanel" aria-labelledby="address-tab">
+      <%= render "show_addresses", proponent: @proponent %>
+    </div>
+
+    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+      <%= render "show_contacts", proponent: @proponent %>
     </div>
   </div>
 </div>
