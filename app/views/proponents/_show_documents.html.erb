@@ -17,6 +17,12 @@
             <tr>
               <td><%= document.kind %></td>
               <td><%= document.document %></td>
+                <td>
+                  <div class="pt-2 d-flex justify-content-end">
+                    <%= button_to "Excluir", document, method: :delete, class: "btn btn-danger me-4  btn-sm" %>
+                    <%= link_to "Editar", edit_proponent_document_path(document), class: "btn btn-secondary text-uppercase  btn-sm" %>
+                  </div>
+                </td>
             </tr>
           <% end %>
         </tbody>
