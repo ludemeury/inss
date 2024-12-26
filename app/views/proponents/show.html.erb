@@ -1,10 +1,34 @@
+<% content_for :title, "Detalhes do proponente" %>
+
 <p style="color: green"><%= notice %></p>
 
-<%= render @proponent %>
+<div class="card">
+  <div class="card-header bg-primary text-white">
+    Dados do proponente
+  </div>
+  <div class="card-body">
+    <div class="row mb-3">
+        <div class="col-md-8">
+          <label class="form-label fw-bold">Nome:</label>
+          <p class="form-control-plaintext"><%= @proponent.name %></p>
+        </div>
 
-<div>
-  <%= link_to "Edit this proponent", edit_proponent_path(@proponent) %> |
-  <%= link_to "Back to proponents", proponents_path %>
+        <div class="col-md-4">
+        <label class="form-label fw-bold">Data de nascimento:</label>
+        <p class="form-control-plaintext"><%= @proponent.birthdate %></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label class="form-label fw-bold">Salário:</label>
+        <p class="form-control-plaintext"><%= @proponent.income %></p>
+      </div>
+    </div>
+  </div>
+</div>
 
-  <%= button_to "Destroy this proponent", @proponent, method: :delete %>
+<div class="col-12 pt-2 d-flex justify-content-end">
+  <%= button_to "Excluir", @proponent, method: :delete, class: "btn btn-danger me-4" %>
+  <%= link_to "Voltar", proponents_path, class: "btn btn-secondary text-uppercase me-3" %>
+  <%= link_to "Editar", edit_proponent_path(@proponent), class: "btn btn-primary text-uppercase" %>
 </div>
