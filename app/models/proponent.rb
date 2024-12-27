@@ -1,6 +1,18 @@
 # frozen_string_literal: true
 
 class Proponent < ApplicationRecord
+  INSS_DISCOUNT_LEVEL_1 = 0.075
+  INSS_LEVEL_1_LIMIT = 1_412.0
+
+  INSS_DISCOUNT_LEVEL_2 = 0.09
+  INSS_LEVEL_2_LIMIT = 2_666.68
+
+  INSS_DISCOUNT_LEVEL_3 = 0.12
+  INSS_LEVEL_3_LIMIT = 4_000.03
+
+  INSS_DISCOUNT_LEVEL_4 = 0.14
+  INSS_LEVEL_4_LIMIT = 7_786.02
+
   before_save :save_inss_discount
 
   validates :name, presence: true
@@ -11,21 +23,46 @@ class Proponent < ApplicationRecord
 
   has_many :addresses, as: :addressable, dependent: :destroy
 
-  has_many :documents, class_name: "ProponentDocument", dependent: :destroy
+  has_many :documents, class_name: 'ProponentDocument', dependent: :destroy
 
-  has_many :contacts, class_name: "ProponentContact", dependent: :destroy
+  has_many :contacts, class_name: 'ProponentContact', dependent: :destroy
 
   def self.calculate_inss_discount(income)
     rounded_income = income.to_d.round(2)
     return 0 if rounded_income <= 0
 
-    return (rounded_income * 0.075).round(2) if rounded_income <=  1_412.00
-    
-    (income * 0.10).round(2)
+    # primeira faixa
+    return (rounded_income * INSS_DISCOUNT_LEVEL_1).round(2) if rounded_income <= INSS_LEVEL_1_LIMIT
+
+    first_level_discount = (INSS_LEVEL_1_LIMIT * INSS_DISCOUNT_LEVEL_1).round(2)
+
+    # segunda faixa
+    if rounded_income <= INSS_LEVEL_2_LIMIT
+      return (((rounded_income - INSS_LEVEL_1_LIMIT) * INSS_DISCOUNT_LEVEL_2).round(2) + first_level_discount).round(2)
+    end
+
+    second_level_discount = ((INSS_LEVEL_2_LIMIT - INSS_LEVEL_1_LIMIT) * INSS_DISCOUNT_LEVEL_2).round(2)
+
+    # terceira faixa
+    if rounded_income <= INSS_LEVEL_3_LIMIT
+      return (((rounded_income - INSS_LEVEL_2_LIMIT) * INSS_DISCOUNT_LEVEL_3).round(2) + first_level_discount + second_level_discount).round(2)
+    end
+
+    third_level_discount = ((INSS_LEVEL_3_LIMIT - INSS_LEVEL_2_LIMIT) * INSS_DISCOUNT_LEVEL_3).round(2)
+
+    # quarta faixa
+    if rounded_income <= INSS_LEVEL_4_LIMIT
+      return (((rounded_income - INSS_LEVEL_3_LIMIT) * INSS_DISCOUNT_LEVEL_4).round(2) + first_level_discount + second_level_discount + third_level_discount).round(2)
+    end
+
+    fourth_level_discount = ((INSS_LEVEL_4_LIMIT - INSS_LEVEL_3_LIMIT) * INSS_DISCOUNT_LEVEL_4).round(2)
+
+    (first_level_discount + second_level_discount + third_level_discount + fourth_level_discount).round(2)
   end
 
   private
-  def save_inss_discount
-    self.inss_discount = Proponent.calculate_inss_discount(income)
-  end
+
+    def save_inss_discount
+      self.inss_discount = Proponent.calculate_inss_discount(income)
+    end
 end
