@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     resources :addresses
     resources :proponent_contacts, path: 'contacts'
   end
+  post 'proponents/inss_discount', to: 'proponents#inss_discount'
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

@@ -1,4 +1,5 @@
 class ProponentsController < ApplicationController
+  skip_before_action :verify_authenticity_token, only: :inss_discount
   before_action :set_proponent, only: %i[ show edit update destroy ]
 
   # GET /proponents or /proponents.json
@@ -35,6 +36,14 @@ class ProponentsController < ApplicationController
     end
   end
 
+  # POST /proponents/inss_discount
+  def inss_discount
+    income = params[:income].to_f
+    discount = calculate_inss_discount(income)
+
+    render json: { discount: discount }
+  end
+
   # PATCH/PUT /proponents/1 or /proponents/1.json
   def update
     respond_to do |format|
@@ -67,5 +76,9 @@ class ProponentsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def proponent_params
       params.expect(proponent: [ :name, :birthdate, :income ])
+    end
+
+    def calculate_inss_discount(income)
+      (income * 0.10).round(2)
     end
 end
