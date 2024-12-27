@@ -6,4 +6,5 @@ Para rodar o projeto
 
 * docker compose up
 
-<img width="1727" alt="Captura de Tela 2024-12-27 às 18 22 12" src="https://github.com/user-attachments/assets/5e2fa809-7cc1-4222-b36d-db4c75022f9d" />
+<img width="1725" alt="Captura de Tela 2024-12-27 às 18 25 04" src="https://github.com/user-attachments/assets/35a2d419-b540-475f-bb4b-964e569f11cc" />
+
