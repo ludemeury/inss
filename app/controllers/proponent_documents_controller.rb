@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class DocumentsController < ApplicationController
+class ProponentDocumentsController < ApplicationController
   before_action :set_proponent
   before_action :set_document, only: %i[show edit update destroy]
 

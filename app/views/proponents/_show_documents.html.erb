@@ -19,8 +19,8 @@
               <td><%= document.document %></td>
                 <td>
                   <div class="pt-2 d-flex justify-content-end">
-                    <%= button_to "Excluir", proponent_document_path(@proponent, document), method: :delete, class: "btn btn-danger me-4  btn-sm" %>
-                    <%= link_to "Editar", edit_proponent_document_path(@proponent, document), class: "btn btn-secondary text-uppercase  btn-sm" %>
+                    <%= button_to "Excluir", proponent_proponent_document_path(@proponent, document), method: :delete, class: "btn btn-danger me-4  btn-sm" %>
+                    <%= link_to "Editar", edit_proponent_proponent_document_path(@proponent, document), class: "btn btn-secondary text-uppercase  btn-sm" %>
                   </div>
                 </td>
             </tr>
@@ -29,6 +29,6 @@
       </table>
     </div>
 
-    <%= link_to "Novo documento", new_proponent_document_path(proponent), class: "btn btn-primary float-end text-uppercase btn-sm" %>
+    <%= link_to "Novo documento", new_proponent_proponent_document_path(proponent), class: "btn btn-primary float-end text-uppercase btn-sm" %>
   </div>
 </div>
