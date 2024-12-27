@@ -1,5 +1,5 @@
 <% content_for :title, "Novo documento" %>
 
-<h1>Novo documento de <%= @document.proponent.name %></h1>
+<h1>Novo documento de <%= @proponent.name %></h1>
 
-<%= render "form", document: @document %>
+<%= render "form", proponent: @proponent, document: @document %>
