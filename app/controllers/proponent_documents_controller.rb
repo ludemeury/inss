@@ -19,7 +19,6 @@ class ProponentDocumentsController < ApplicationController
 
   # POST /proponents/:proponent_id/documents
   def create
-    puts "create document #{document_params} - #{@document}"
     @document = @proponent.documents.new(document_params)
 
     if @document.save
@@ -35,10 +34,8 @@ class ProponentDocumentsController < ApplicationController
   # PATCH/PUT /proponents/:proponent_id/documents/:id
   def update
     if @document.update(document_params)
-      puts "ok update doc"
       redirect_to  proponent_path(@proponent, tab: "document"), notice: 'Documento foi atualizado com sucesso.'
     else
-      puts "error update doc"
       render :edit, status: :unprocessable_entity
     end
   end
@@ -53,13 +50,10 @@ class ProponentDocumentsController < ApplicationController
 
     def set_proponent
       @proponent = Proponent.find(params[:proponent_id])
-      puts "proponent #{@proponent.inspect} - #{@proponent.documents.inspect}"
     end
 
     def set_document
-      puts "set_document #{@proponent.inspect} - #{params[:id].inspect}"
       @document = @proponent.documents.find(params[:id])
-      puts "set_document #{@proponent.inspect} - #{params[:id].inspect} - #{@document.inspect}"
     end
 
     def document_params
