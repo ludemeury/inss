@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :proponents do
     resources :proponent_documents, path: 'documents'
+    resources :addresses
   end
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

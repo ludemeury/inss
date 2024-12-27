@@ -1,0 +1,52 @@
+
+<%= form_with(model: [proponent, address], class: "row g-3") do |form| %>
+  <% if address.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(address.errors.count, "error") %> prohibited this address from being saved:</h2>
+
+      <ul>
+        <% address.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="col-3">
+    <%= form.text_field :kind, class: "form-control", placeholder: "Tipo" %>
+  </div>
+
+  <div class="col-9">
+    <%= form.text_field :street, class: "form-control", placeholder: "Logradouro" %>
+  </div>
+
+  <div class="col-3">
+    <%= form.text_field :number, class: "form-control", placeholder: "Número" %>
+  </div>
+
+  <div class="col-6">
+    <%= form.text_field :complement, class: "form-control", placeholder: "Complemento" %>
+  </div>
+
+  <div class="col-3">
+    <%= form.text_field :district, class: "form-control", placeholder: "Bairro" %>
+  </div>
+
+    <div class="col-4">
+    <%= form.text_field :city, class: "form-control", placeholder: "Cidade" %>
+  </div>
+
+  <div class="col-4">
+    <%= form.text_field :state, class: "form-control", placeholder: "Estado" %>
+  </div>
+
+  <div class="col-4">
+    <%= form.text_field :zip_code, class: "form-control", placeholder: "CEP" %>
+  </div>
+
+  <div class="col-12 pt-2 d-flex justify-content-end">
+    <%= link_to 'Endereços', proponent_path(proponent, tab: "address"), class: "btn btn-secondary text-uppercase me-3" %>
+    <%= form.submit "Salvar", class: "btn btn-primary text-uppercase" %>
+  </div>
+
+<% end %>
