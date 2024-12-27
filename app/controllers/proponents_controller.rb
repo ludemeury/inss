@@ -8,6 +8,7 @@ class ProponentsController < ApplicationController
 
   # GET /proponents/1 or /proponents/1.json
   def show
+    @tab = params[:tab] || "personal"
   end
 
   # GET /proponents/new
