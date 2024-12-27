@@ -1,0 +1,28 @@
+
+<%= form_with(model: [proponent, contact], class: "row g-3") do |form| %>
+  <% if contact.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(contact.errors.count, "error") %> prohibited this contact from being saved:</h2>
+
+      <ul>
+        <% contact.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="col-4">
+    <%= form.text_field :kind, class: "form-control", placeholder: "Tipo" %>
+  </div>
+
+  <div class="col-6">
+    <%= form.text_field :value, class: "form-control", placeholder: "Contato" %>
+  </div>
+
+  <div class="col-12 pt-2 d-flex justify-content-end">
+    <%= link_to 'Contatos', proponent_path(contact.proponent, tab: "contact"), class: "btn btn-secondary text-uppercase me-3" %>
+    <%= form.submit "Salvar", class: "btn btn-primary text-uppercase" %>
+  </div>
+
+<% end %>

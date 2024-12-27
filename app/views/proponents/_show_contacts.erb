@@ -3,7 +3,32 @@
     Contatos de <%= @proponent.name %>
   </div>
   <div class="card-body">
-    <h5 class="card-title">Email: john.doe@example.com</h5>
-    <p class="card-text">Phone: (123) 456-7890</p>
+    <div id="contacts">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Tipo</th>
+            <th scope="col">Contato</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% proponent.contacts.each do |contact| %>
+            <tr>
+              <td><%= contact.kind %></td>
+              <td><%= contact.value %></td>
+                <td>
+                  <div class="pt-2 d-flex justify-content-end">
+                    <%= button_to "Excluir", proponent_proponent_contact_path(@proponent, contact), method: :delete, class: "btn btn-danger me-4  btn-sm" %>
+                    <%= link_to "Editar", edit_proponent_proponent_contact_path(@proponent, contact), class: "btn btn-secondary text-uppercase  btn-sm" %>
+                  </div>
+                </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+    <%= link_to "Novo contato", new_proponent_proponent_contact_path(proponent), class: "btn btn-primary float-end text-uppercase btn-sm" %>
   </div>
 </div>
