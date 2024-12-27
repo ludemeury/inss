@@ -16,6 +16,11 @@ class Proponent < ApplicationRecord
   has_many :contacts, class_name: "ProponentContact", dependent: :destroy
 
   def self.calculate_inss_discount(income)
+    rounded_income = income.to_d.round(2)
+    return 0 if rounded_income <= 0
+
+    return (rounded_income * 0.075).round(2) if rounded_income <=  1_412.00
+    
     (income * 0.10).round(2)
   end
 
