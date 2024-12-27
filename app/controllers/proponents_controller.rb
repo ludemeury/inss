@@ -39,7 +39,7 @@ class ProponentsController < ApplicationController
   # POST /proponents/inss_discount
   def inss_discount
     income = params[:income].to_f
-    discount = calculate_inss_discount(income)
+    discount = Proponent.calculate_inss_discount(income)
 
     render json: { discount: discount }
   end
@@ -76,9 +76,5 @@ class ProponentsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def proponent_params
       params.expect(proponent: [ :name, :birthdate, :income ])
-    end
-
-    def calculate_inss_discount(income)
-      (income * 0.10).round(2)
     end
 end

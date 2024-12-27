@@ -19,6 +19,12 @@
         <label class="form-label fw-bold">Salário:</label>
         <p class="form-control-plaintext"><%= proponent.income %></p>
       </div>
+
+      <div class="col-md-6 mb-3">
+        <div class="alert alert-info" role="alert">
+          <strong>Desconto INSS:</strong> <span><%= proponent.inss_discount %></span>
+        </div>
+      </div>
     </div>
   </div>
 </div>

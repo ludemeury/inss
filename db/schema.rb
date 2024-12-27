@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_12_22_161554) do
+ActiveRecord::Schema[8.0].define(version: 2024_12_27_183152) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -54,6 +54,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_22_161554) do
     t.decimal "income"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.decimal "inss_discount"
   end
 
   add_foreign_key "proponent_contacts", "proponents"
