@@ -5,7 +5,6 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: rails_app
     platform: linux/amd64
     volumes:
       - .:/usr/src/app
@@ -25,7 +24,6 @@ services:
 
   postgres:
     image: postgres:17.2
-    container_name: postgres_db
     platform: linux/amd64
     environment:
       POSTGRES_USER: postgres
