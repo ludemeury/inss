@@ -64,5 +64,15 @@ class Proponent < ApplicationRecord
 
     def save_inss_discount
       self.inss_discount = Proponent.calculate_inss_discount(income)
+      rounded_income = income.to_d.round(2)
+      self.inss_level = if rounded_income <= INSS_LEVEL_1_LIMIT
+                          'inss_level_1'
+                        elsif rounded_income <= INSS_LEVEL_2_LIMIT
+                          'inss_level_2'
+                        elsif rounded_income <= INSS_LEVEL_3_LIMIT
+                          'inss_level_3'
+                        else
+                          'inss_level_4'
+                        end
     end
 end
