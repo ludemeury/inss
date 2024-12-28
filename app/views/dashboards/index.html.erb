@@ -1,0 +1,24 @@
+<%= provide :title, "Dashboard Proponentes" %>
+
+<div class="container mt-4">
+  <h1>Quantidade de funcionários por faixa salarial</h1>
+
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th>Faixa Salarial</th>
+        <th>Quantidade</th>
+        <th>Atualizado em</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @proponent_reports.each do |report| %>
+        <tr>
+          <td><%= report.indicator %></td>
+          <td><%= report.amount.to_i %></td>
+          <td><%= report.updated_at.strftime('%B %d, %Y') %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
