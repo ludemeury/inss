@@ -13,7 +13,9 @@
   <% end %>
 
   <div class="col-4">
-    <%= form.text_field :kind, class: "form-control", placeholder: "Tipo" %>
+      <%= form.select :kind, 
+        options_for_select(ProponentContact::KINDS.map{|kind| [kind.humanize, kind]}), 
+        { class: "form-select", aria: { label: "Tipo" }, prompt: "Selecione um tipo" }, class: "form-select"  %>
   </div>
 
   <div class="col-6">
