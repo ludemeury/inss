@@ -2,9 +2,12 @@ class ProponentsController < ApplicationController
   skip_before_action :verify_authenticity_token, only: :inss_discount
   before_action :set_proponent, only: %i[ show edit update destroy ]
 
+  has_scope :by_name
+  has_scope :by_inss_level
+
   # GET /proponents or /proponents.json
   def index
-    @proponents = Proponent.all
+    @proponents = apply_scopes(Proponent.all).page(params[:page]).per(5)
   end
 
   # GET /proponents/1 or /proponents/1.json

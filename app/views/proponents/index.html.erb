@@ -5,6 +5,20 @@
 <h1>Proponentes</h1>
 
 <div id="proponents">
+  <%= form_with url: proponents_path, method: :get, class: "mb-3" do |f| %>
+    <div class="row">
+      <div class="col-md-3">
+        <%= f.text_field :by_name, placeholder: "Nome", class: "form-control" %>
+      </div>
+      <div class="col-md-3">
+        <%= f.text_field :by_inss_level, placeholder: "Faixa INSS", class: "form-control" %>
+      </div>
+      <div class="col-md-2">
+        <%= f.submit "Pesquisar", class: "btn btn-primary w-100" %>
+      </div>
+    </div>
+  <% end %>
+
   <table class="table table-striped">
     <thead>
       <tr>
@@ -21,6 +35,10 @@
       <% end %>
     </tbody>
   </table>
+
+  <div class="d-flex justify-content-center">
+    <%= paginate @proponents, theme: 'bootstrap-4' %>
+  </div>
 </div>
 
 <%= link_to "Novo", new_proponent_path, class: "btn btn-primary float-end text-uppercase" %>
