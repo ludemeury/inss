@@ -22,38 +22,11 @@
     </tbody>
   </table>
 
-  <div class="mt-5">
-    <canvas id="reportChart" width="400" height="200"></canvas>
+  <div class="chart-container"  data-turbo-permanent>
+    <canvas
+      data-controller="chart"
+      data-chart-target="canvas"
+      data-chart-data='<%= @chart_data.to_json.html_safe %>'
+    ></canvas>
   </div>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      const indicators = <%= raw @proponent_reports.map { |report| "'#{report.indicator}'" }.to_json %>;
-      const amounts = <%= raw @proponent_reports.map { |report| report.amount.to_f }.to_json %>;
-
-      const ctx = document.getElementById('reportChart').getContext('2d');
-
-      const chart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-          labels: indicators,
-          datasets: [{
-            label: 'Quantidade',
-            data: amounts,
-            backgroundColor: 'rgba(54, 162, 235, 0.2)',
-            borderColor: 'rgba(54, 162, 235, 1)',
-            borderWidth: 1
-          }]
-        },
-        options: {
-          responsive: true,
-          scales: {
-            y: {
-              beginAtZero: true
-            }
-          }
-        }
-      });
-    });
-  </script>
 </div>
