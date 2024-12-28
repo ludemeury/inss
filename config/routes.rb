@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  require 'sidekiq/web'
+  mount Sidekiq::Web => '/sidekiq'
   resources :proponents do
     resources :proponent_documents, path: 'documents'
     resources :addresses
