@@ -52,6 +52,7 @@ services:
     command: bundle exec sidekiq
     volumes:
       - .:/usr/src/app
+      - bundle_cache:/usr/local/bundle
     depends_on:
       - redis
       - postgres

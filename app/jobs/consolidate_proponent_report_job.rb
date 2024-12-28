@@ -1,5 +1,5 @@
 class ConsolidateProponentReportJob < ApplicationJob
-  queue_as :report
+  queue_as :default
 
   def perform(*args)
     puts "Running ConsolidateProponentReportJob"
