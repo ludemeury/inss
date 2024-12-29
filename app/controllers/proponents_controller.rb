@@ -32,7 +32,7 @@ class ProponentsController < ApplicationController
 
     respond_to do |format|
       if @proponent.save
-        format.html { redirect_to @proponent, notice: "Proponent was successfully created." }
+        format.html { redirect_to @proponent, notice: "Proponente foi criado com sucesso." }
         format.json { render :show, status: :created, location: @proponent }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -53,7 +53,7 @@ class ProponentsController < ApplicationController
   def update
     respond_to do |format|
       if @proponent.update(proponent_params)
-        format.html { redirect_to @proponent, notice: "Proponent was successfully updated." }
+        format.html { redirect_to @proponent, notice: "Proponente foi atualizado com sucesso." }
         format.json { render :show, status: :ok, location: @proponent }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -67,7 +67,7 @@ class ProponentsController < ApplicationController
     @proponent.destroy!
 
     respond_to do |format|
-      format.html { redirect_to proponents_path, status: :see_other, notice: "Proponent was successfully destroyed." }
+      format.html { redirect_to proponents_path, status: :see_other, notice: "Proponente foi excluído com sucesso." }
       format.json { head :no_content }
     end
   end

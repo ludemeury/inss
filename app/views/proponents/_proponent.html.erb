@@ -1,9 +1,9 @@
 <tr id="<%= dom_id proponent %>">
   <td><%= proponent.name %></td>
-  <td><%= proponent.birthdate %></td>
-  <td><%= proponent.income %></td>
-  <td><%= proponent.inss_level %></td>
-  <td><%= proponent.inss_discount %></td>
+  <td><%= I18n.l(proponent.birthdate) %></td>
+  <td><%= number_to_currency(proponent.income, precision: 2) %></td>
+  <td><%= proponent.translated_inss_level %></td>
+  <td><%= number_to_currency(proponent.inss_discount, precision: 2) %></td>
   <td>
     <%= link_to 'Detalhes', proponent %>
   </td>
