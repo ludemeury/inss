@@ -13,8 +13,8 @@ class Proponent < ApplicationRecord
   INSS_DISCOUNT_LEVEL_4 = 0.14
   INSS_LEVEL_4_LIMIT = 7_786.02
 
-  scope :by_name, ->(value) { where("name LIKE ?", "%#{value}%") }
-  scope :by_inss_level, ->(value) { where(inss_level: inss_level) }
+  scope :by_name, ->(name) { where("name ILIKE ?", "%#{name}%") }
+  scope :by_inss_level, ->(inss_level) { where(inss_level: inss_level) }
 
   before_save :save_inss_discount
 
