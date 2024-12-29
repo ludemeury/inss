@@ -1,4 +1,6 @@
 class ProponentsController < ApplicationController
+  include Pagy::Backend
+
   skip_before_action :verify_authenticity_token, only: :inss_discount
   before_action :set_proponent, only: %i[ show edit update destroy ]
 
@@ -7,7 +9,7 @@ class ProponentsController < ApplicationController
 
   # GET /proponents or /proponents.json
   def index
-    @proponents = apply_scopes(Proponent.all).page(params[:page]).per(5)
+    @pagy, @proponents = pagy(apply_scopes(Proponent.all))
   end
 
   # GET /proponents/1 or /proponents/1.json
