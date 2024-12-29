@@ -9,7 +9,7 @@ class ProponentsController < ApplicationController
 
   # GET /proponents or /proponents.json
   def index
-    @pagy, @proponents = pagy(apply_scopes(Proponent.all))
+    @pagy, @proponents = pagy(apply_scopes(Proponent.all.order(:name)))
   end
 
   # GET /proponents/1 or /proponents/1.json

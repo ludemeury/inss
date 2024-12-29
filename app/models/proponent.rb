@@ -15,7 +15,7 @@ class Proponent < ApplicationRecord
   INSS_DISCOUNT_LEVEL_4 = 0.14
   INSS_LEVEL_4_LIMIT = 7_786.02
 
-  scope :by_name, ->(name) { where("name ILIKE ?", "%#{name}%") }
+  scope :by_name, ->(name) { where('name ILIKE ?', "%#{name}%") }
   scope :by_inss_level, ->(inss_level) { where(inss_level: inss_level) }
 
   before_save :save_inss_discount
@@ -33,7 +33,11 @@ class Proponent < ApplicationRecord
   has_many :contacts, class_name: 'ProponentContact', dependent: :destroy
 
   def translated_inss_level
-    I18n.t("inss_levels.#{inss_level}")
+    Proponent.translate_inss_level(inss_level)
+  end
+
+  def self.translate_inss_level(level)
+    I18n.t("inss_levels.#{level}")
   end
 
   def self.calculate_inss_discount(income)

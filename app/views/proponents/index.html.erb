@@ -12,7 +12,7 @@
       </div>
       <div class="col-md-3">
         <%= form.select :by_inss_level, 
-          options_for_select(Proponent::INSS_LEVELS.map{|kind| [kind.humanize, kind]}, params[:by_inss_level]), 
+          options_for_select(Proponent::INSS_LEVELS.map{|level| [Proponent.translate_inss_level(level), level]}, params[:by_inss_level]), 
         { class: "form-select", aria: { label: "Faixa INSS" }, prompt: "Selecione uma faixa" }, class: "form-select"  %>
       </div>
       <div class="col-md-4 align-self-end">

@@ -14,7 +14,7 @@
     <tbody>
       <% @proponent_reports.each do |report| %>
         <tr>
-          <td><%= I18n.t("inss_levels.#{report.indicator}") %></td>
+          <td><%= Proponent.translate_inss_level(report.indicator) %></td>
           <td><%= report.amount.to_i %></td>
           <td><%= I18n.l(report.updated_at, format: :long) %></td>
         </tr>
