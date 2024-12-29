@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+User.create!(email_address: "admin@admin.com", password: "123456", password_confirmation: "123456")
+
 Proponent.find_or_create_by!(name: 'João Batista de Alburgueque', birthdate: 30.years.ago,
                              income: 2050)
 Proponent.find_or_create_by!(name: 'Alino dos Santos Ribeiro',
