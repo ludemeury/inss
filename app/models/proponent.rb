@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Proponent < ApplicationRecord
+  INSS_LEVELS = %w[inss_level_1 inss_level_2 inss_level_3 inss_level_4].freeze
+
   INSS_DISCOUNT_LEVEL_1 = 0.075
   INSS_LEVEL_1_LIMIT = 1_412.0
 

@@ -5,13 +5,15 @@
 <h1>Proponentes</h1>
 
 <div id="proponents">
-  <%= form_with url: proponents_path, method: :get, local: true, class: "mb-3" do |f| %>
+  <%= form_with url: proponents_path, method: :get, local: true, class: "mb-3" do |form| %>
     <div class="row">
       <div class="col-md-3">
-        <%= f.text_field :by_name, value: params[:by_name], placeholder: "Nome", class: "form-control" %>
+        <%= form.text_field :by_name, value: params[:by_name], placeholder: "Nome", class: "form-control" %>
       </div>
       <div class="col-md-3">
-        <%= f.text_field :by_inss_level, value: params[:by_inss_level], placeholder: "Faixa INSS", class: "form-control" %>
+        <%= form.select :by_inss_level, 
+          options_for_select(Proponent::INSS_LEVELS.map{|kind| [kind.humanize, kind]}, params[:by_inss_level]), 
+        { class: "form-select", aria: { label: "Faixa INSS" }, prompt: "Selecione uma faixa" }, class: "form-select"  %>
       </div>
       <div class="col-md-4 align-self-end">
         <%= submit_tag 'Pesquisar', class: 'btn btn-primary text-uppercase me-3' %>
@@ -26,6 +28,7 @@
         <th scope="col">Nome</th>
         <th scope="col">Data de nascimento</th>
         <th scope="col">Salário</th>
+        <th scope="col">Faixa INSS</th>
         <th scope="col">Desconto INSS</th>
         <th scope="col"></th>
       </tr>
