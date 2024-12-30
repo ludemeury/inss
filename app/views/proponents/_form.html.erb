@@ -1,8 +1,6 @@
 <%= form_with(model: proponent, class: "row g-3") do |form| %>
   <% if proponent.errors.any? %>
     <div style="color: red">
-      <h2><%= pluralize(proponent.errors.count, "error") %> prohibited this proponent from being saved:</h2>
-
       <ul>
         <% proponent.errors.each do |error| %>
           <li><%= error.full_message %></li>

@@ -6,6 +6,26 @@ pt-BR:
     inss_level_3: "Terceira faixa salarial"
     inss_level_4: "Quarta faixa salarial"
   activerecord:
+    attributes:
+      proponent:
+        name: "nome"
+        birthdate: "data de nascimento"
+        income: "salário"
+      proponent_document:
+        kind: "tipo"
+        document: "documento"
+      proponent_contact:
+        kind: "tipo"
+        value: "contato"
+      address:
+        kind: "tipo"
+        street: "logradouro"
+        number: "número"
+        city: "cidade"
+        state: "estado"
+        complement: "complemento"
+        district: "bairro"
+        zip_code: "CEP"
     errors:
       messages:
         record_invalid: 'A validação falhou: %{errors}'
