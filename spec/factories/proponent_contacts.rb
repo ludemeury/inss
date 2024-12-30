@@ -7,7 +7,6 @@ FactoryBot.define do
         Faker::Internet.email
       when 'telefone_residencial'
         Faker::PhoneNumber.phone_number
-      end
       when 'celular', 'whatsapp'
         Faker::PhoneNumber.cell_phone
       end
