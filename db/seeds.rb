@@ -4,7 +4,7 @@ User.create!(email_address: "admin@admin.com", password: "123456", password_conf
 
 Proponent.find_or_create_by!(name: 'João Batista de Alburgueque', birthdate: 30.years.ago,
                              income: 2050)
-Proponent.find_or_create_by!(name: 'Alino dos Santos Ribeiro',
+Proponent.find_or_create_by!(name: 'Aline dos Santos Ribeiro',
                              birthdate: 18.years.ago, income: 3045.54)
 Proponent.find_or_create_by!(name: 'Carlos dos Santos',
                              birthdate: 25.years.ago, income: 4355.65)
