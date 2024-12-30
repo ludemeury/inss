@@ -1,0 +1,30 @@
+<div class="card mt-3">
+  <div class="card-header">
+    Dados pessoais de <%= proponent.name %>
+  </div>
+  <div class="card-body">
+    <div class="row mb-3">
+        <div class="col-md-8">
+          <label class="form-label fw-bold">Nome:</label>
+          <p class="form-control-plaintext"><%= proponent.name %></p>
+        </div>
+
+        <div class="col-md-4">
+        <label class="form-label fw-bold">Data de nascimento:</label>
+        <p class="form-control-plaintext"><%= I18n.l(proponent.birthdate) %></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label class="form-label fw-bold">Salário:</label>
+        <p class="form-control-plaintext"><%= number_to_currency(proponent.income, precision: 2) %></p>
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <div class="alert alert-info" role="alert">
+          <strong>Desconto INSS:</strong> <span><%= number_to_currency(proponent.inss_discount, precision: 2) %></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,32 @@
+<%= provide :title, "Dashboard Proponentes" %>
+
+<div class="container mt-4">
+  <h1>Quantidade de funcionários por faixa salarial</h1>
+
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th>Faixa Salarial</th>
+        <th>Quantidade</th>
+        <th>Atualizado em</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @proponent_reports.each do |report| %>
+        <tr>
+          <td><%= Proponent.translate_inss_level(report.indicator) %></td>
+          <td><%= report.amount.to_i %></td>
+          <td><%= I18n.l(report.updated_at, format: :long) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <div class="chart-container"  data-turbo-permanent>
+    <canvas
+      data-controller="chart"
+      data-chart-target="canvas"
+      data-chart-data='<%= @chart_data.to_json.html_safe %>'
+    ></canvas>
+  </div>
+</div>

@@ -1,0 +1,4 @@
+consolidate_proponent_report_job:
+  cron: "*/1 * * * *" # Every 1 minute
+  class: "ConsolidateProponentReportJob"
+  queue: "default"

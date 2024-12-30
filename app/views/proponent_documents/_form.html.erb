@@ -1,0 +1,30 @@
+
+<%= form_with(model: [proponent, document], class: "row g-3") do |form| %>
+  <% if document.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(document.errors.count, "error") %> prohibited this document from being saved:</h2>
+
+      <ul>
+        <% document.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="col-4">
+      <%= form.select :kind, 
+        options_for_select(ProponentDocument::KINDS.map{|kind| [kind.upcase, kind]}), 
+        { class: "form-select", aria: { label: "Tipo" }, prompt: "Selecione um tipo" }, class: "form-select"  %>
+  </div>
+
+  <div class="col-6">
+    <%= form.text_field :document, class: "form-control", placeholder: "Número" %>
+  </div>
+
+  <div class="col-12 pt-2 d-flex justify-content-end">
+    <%= link_to 'Documentos', proponent_path(document.proponent, tab: "document"), class: "btn btn-secondary text-uppercase me-3" %>
+    <%= form.submit "Salvar", class: "btn btn-primary text-uppercase" %>
+  </div>
+
+<% end %>

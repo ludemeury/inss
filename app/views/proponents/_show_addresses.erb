@@ -1,0 +1,46 @@
+<div class="card mt-3">
+  <div class="card-header">
+    Endereços de <%= @proponent.name %>
+  </div>
+  <div class="card-body">
+    <div id="addresses">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Tipo</th>
+            <th scope="col">Logradouro</th>
+            <th scope="col">Número</th>
+            <th scope="col">Complemento</th>
+            <th scope="col">Bairro</th>
+            <th scope="col">Cidade</th>
+            <th scope="col">Estado</th>
+            <th scope="col">CEP</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% proponent.addresses.each do |address| %>
+            <tr>
+              <td><%= address.kind %></td>
+              <td><%= address.street %></td>
+              <td><%= address.number %></td>
+              <td><%= address.complement %></td>
+              <td><%= address.district %></td>
+              <td><%= address.city %></td>
+              <td><%= address.state %></td>
+              <td><%= address.zip_code %></td>
+                <td>
+                  <div class="pt-2 d-flex justify-content-end">
+                    <%= button_to "Excluir", proponent_address_path(@proponent, address), method: :delete, class: "btn btn-danger me-4  btn-sm text-uppercase" %>
+                    <%= link_to "Editar", edit_proponent_address_path(@proponent, address), class: "btn btn-secondary text-uppercase  btn-sm" %>
+                  </div>
+                </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+    <%= link_to "Novo endereço", new_proponent_address_path(proponent), class: "btn btn-primary float-end text-uppercase btn-sm" %>
+  </div>
+</div>

@@ -1,13 +1,20 @@
 class ProponentsController < ApplicationController
+  include Pagy::Backend
+
+  skip_before_action :verify_authenticity_token, only: :inss_discount
   before_action :set_proponent, only: %i[ show edit update destroy ]
+
+  has_scope :by_name
+  has_scope :by_inss_level
 
   # GET /proponents or /proponents.json
   def index
-    @proponents = Proponent.all
+    @pagy, @proponents = pagy(apply_scopes(Proponent.all.order(:name)))
   end
 
   # GET /proponents/1 or /proponents/1.json
   def show
+    @tab = params[:tab] || "personal"
   end
 
   # GET /proponents/new
@@ -25,7 +32,7 @@ class ProponentsController < ApplicationController
 
     respond_to do |format|
       if @proponent.save
-        format.html { redirect_to @proponent, notice: "Proponent was successfully created." }
+        format.html { redirect_to @proponent, notice: "Proponente foi criado com sucesso." }
         format.json { render :show, status: :created, location: @proponent }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -34,11 +41,19 @@ class ProponentsController < ApplicationController
     end
   end
 
+  # POST /proponents/inss_discount
+  def inss_discount
+    income = params[:income].to_f
+    discount = Proponent.calculate_inss_discount(income)
+
+    render json: { discount: discount }
+  end
+
   # PATCH/PUT /proponents/1 or /proponents/1.json
   def update
     respond_to do |format|
       if @proponent.update(proponent_params)
-        format.html { redirect_to @proponent, notice: "Proponent was successfully updated." }
+        format.html { redirect_to @proponent, notice: "Proponente foi atualizado com sucesso." }
         format.json { render :show, status: :ok, location: @proponent }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -52,7 +67,7 @@ class ProponentsController < ApplicationController
     @proponent.destroy!
 
     respond_to do |format|
-      format.html { redirect_to proponents_path, status: :see_other, notice: "Proponent was successfully destroyed." }
+      format.html { redirect_to proponents_path, status: :see_other, notice: "Proponente foi excluído com sucesso." }
       format.json { head :no_content }
     end
   end

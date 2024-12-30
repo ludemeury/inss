@@ -5,13 +5,32 @@
 <h1>Proponentes</h1>
 
 <div id="proponents">
+  <%= form_with url: proponents_path, method: :get, local: true, class: "mb-3" do |form| %>
+    <div class="row">
+      <div class="col-md-3">
+        <%= form.text_field :by_name, value: params[:by_name], placeholder: "Nome", class: "form-control" %>
+      </div>
+      <div class="col-md-3">
+        <%= form.select :by_inss_level, 
+          options_for_select(Proponent::INSS_LEVELS.map{|level| [Proponent.translate_inss_level(level), level]}, params[:by_inss_level]), 
+        { class: "form-select", aria: { label: "Faixa INSS" }, prompt: "Selecione uma faixa" }, class: "form-select"  %>
+      </div>
+      <div class="col-md-4 align-self-end">
+        <%= submit_tag 'Pesquisar', class: 'btn btn-primary text-uppercase me-3' %>
+        <%= link_to 'Limpar', proponents_path, class: 'btn btn-secondary ms-2 text-uppercase' %>
+      </div>
+    </div>
+  <% end %>
+
   <table class="table table-striped">
     <thead>
       <tr>
         <th scope="col">Nome</th>
         <th scope="col">Data de nascimento</th>
         <th scope="col">Salário</th>
-        <th scope="col">#</th>
+        <th scope="col">Faixa INSS</th>
+        <th scope="col">Desconto INSS</th>
+        <th scope="col"></th>
       </tr>
     </thead>
     <tbody>
@@ -20,6 +39,8 @@
       <% end %>
     </tbody>
   </table>
+
+  <%== pagy_bootstrap_nav(@pagy) if @pagy.pages > 1 %>
 </div>
 
-<%= link_to "Novo", new_proponent_path %>
+<%= link_to "Novo", new_proponent_path, class: "btn btn-primary float-end text-uppercase" %>

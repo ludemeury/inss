@@ -5,7 +5,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: rails_app
+    platform: linux/amd64
     volumes:
       - .:/usr/src/app
       - bundle_cache:/usr/local/bundle
@@ -17,6 +17,8 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: password
       POSTGRES_DB: inss_development
+      REDIS_URL: redis://redis:6379/0
+
     depends_on:
       postgres:
         condition: service_healthy
@@ -24,7 +26,7 @@ services:
 
   postgres:
     image: postgres:17.2
-    container_name: postgres_db
+    platform: linux/amd64
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: password
@@ -38,6 +40,29 @@ services:
       interval: 5s
       timeout: 5s
       retries: 5
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+
+  jobs:
+    build:
+      context: .
+    command: bundle exec sidekiq
+    volumes:
+      - .:/usr/src/app
+      - bundle_cache:/usr/local/bundle
+    depends_on:
+      - redis
+      - postgres
+    environment:
+      RAILS_ENV: development
+      POSTGRES_HOST: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: inss_development
+      REDIS_URL: redis://redis:6379/0
 
 volumes:
   postgres_data:

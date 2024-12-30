@@ -1,0 +1,5 @@
+<% content_for :title, "Novo endereço" %>
+
+<h1>Novo endereço de <%= @proponent.name %></h1>
+
+<%= render "form", proponent: @proponent, address: @address %>
